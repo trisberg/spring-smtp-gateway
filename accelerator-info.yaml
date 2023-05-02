@@ -1,0 +1,26 @@
+id: 7d0a9a09-57c6-443f-964a-bbfa9a15be9f
+timestamp: 2023-05-02T21:33:37Z
+username: risbergt
+source: VSCODE
+accelerator:
+  name: spring-smtp-gateway
+  source:
+    image: us-central1-docker.pkg.dev/tap-sandbox-dev/tap-bits/tap-packages@sha256:1ec4cd49847f1eb162c6b310d1bec0c1c863593f82a01a9cff79dbdced1b3aa0
+fragments:
+  - name: build-wrapper-maven
+    source:
+      image: us-central1-docker.pkg.dev/tap-sandbox-dev/tap-bits/tap-packages@sha256:195a3ca6585fa91c41292584a19c2807c72ecdf986ce860a7147451e89d467d4
+  - name: tap-workload
+    source:
+      image: us-central1-docker.pkg.dev/tap-sandbox-dev/tap-bits/tap-packages@sha256:dbf0dedb6848ad8a7704c1c19465a1ddae9039b0e63c1dd0df3e2ed9cbda6093
+options:
+  containerPort: 1026
+  createRabbitMQCluster: true
+  createResourceClaim: true
+  includeBuildToolWrapper: true
+  numRabbitMQClusterNodes: 1
+  projectName: spring-smtp-gateway
+  rabbitMQName: rmq-1
+  serviceNamespace: developer-ns
+  servicePort: 25
+  workloadNamespace: developer-ns
